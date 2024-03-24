@@ -1,7 +1,7 @@
 const APIURL = "https://fakestoreapi.com";
 
 //User login function
-export const login = async (username, password) => {
+export const loginUser = async (username, password) => {
   try {
     const response = await fetch(`${APIURL}/auth/login`, {
       method: "POST",
