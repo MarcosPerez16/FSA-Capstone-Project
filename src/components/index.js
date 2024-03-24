@@ -1,3 +1,4 @@
 //Table of contents
 
 export { default as Login } from "./Login";
+export { default as NavBar } from "./NavBar";
