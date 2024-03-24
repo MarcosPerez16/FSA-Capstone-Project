@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Login, NavBar, AllProducts } from "./components";
+import { Login, NavBar, AllProducts, SingleProduct } from "./components";
 import { getAllProducts } from "./API";
 
 const App = () => {
@@ -29,6 +29,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<AllProducts products={products} />} />
         <Route path="/login" element={<Login setToken={setToken} />} />
+        <Route path="/:productId" element={<SingleProduct />} />
       </Routes>
     </div>
   );
