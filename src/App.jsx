@@ -1,9 +1,19 @@
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Login, NavBar } from "./components";
+import { Login, NavBar, AllProducts } from "./components";
+import { getAllProducts } from "./API";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token" || null));
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchAllProducts = async () => {
+      const products = await getAllProducts();
+      setProducts(products);
+    };
+    fetchAllProducts();
+  }, []);
 
   useEffect(() => {
     if (token) {
@@ -17,7 +27,7 @@ const App = () => {
     <div>
       <NavBar token={token} setToken={setToken} />
       <Routes>
-        <Route path="/" element={<h1>Hello, World</h1>} />
+        <Route path="/" element={<AllProducts products={products} />} />
         <Route path="/login" element={<Login setToken={setToken} />} />
       </Routes>
     </div>
