@@ -43,7 +43,7 @@ const Login = ({ setToken }) => {
         <div>
           <label htmlFor="password">Password</label>
           <input
-            type="text" //this will need to be changed to password so it doesnt show i beleive
+            type="password"
             id="password"
             value={password}
             onChange={handlePasswordChange}
