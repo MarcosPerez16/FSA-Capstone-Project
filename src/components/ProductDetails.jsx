@@ -19,7 +19,10 @@ const ProductDetails = ({ product, isSingle }) => {
         <h2 className="card-title">{product.title}</h2>
         <p className="card-price">${product.price}</p>
         <p>{product.category}</p>
-        <button className="card-button">Add to Card</button>
+        <p>
+          Rating: {product.rating.rate} ({product.rating.count} reviews)
+        </p>
+        <button className="card-button">Add to Cart</button>
         {!isSingle && (
           <button onClick={handleViewItemClick} className="view-item-button">
             View Item
