@@ -45,3 +45,14 @@ export const getSingleProduct = async (id) => {
     console.error("Error getting single product", error);
   }
 };
+
+// GET all categories
+export const getAllCategories = async () => {
+  try {
+    const response = await fetch(`${APIURL}/products/categories`);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error getting all categories", error);
+  }
+};

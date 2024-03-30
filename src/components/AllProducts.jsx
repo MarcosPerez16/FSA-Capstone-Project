@@ -1,41 +1,58 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductDetails from "./ProductDetails";
+import { getAllProducts, getAllCategories } from "../API";
 
-const AllProducts = ({ products }) => {
-  console.log("products", products);
+const AllProducts = () => {
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [sortBy, setSortBy] = useState("");
 
-  const [sortBy, setSortBy] = useState(""); // State to track sorting criteria
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const productsData = await getAllProducts();
+        setProducts(productsData);
+        const categoriesData = await getAllCategories();
+        setCategories(categoriesData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleSortChange = (event) => {
-    setSortBy(event.target.value); // Update sorting criteria when user selects an option
+    setSortBy(event.target.value);
   };
 
-  // Function to sort products based on selected criteria
-  const sortProducts = (products) => {
-    if (sortBy === "name") {
-      return products.slice().sort((a, b) => a.title.localeCompare(b.title));
-    } else if (sortBy === "price") {
-      return products.slice().sort((a, b) => a.price - b.price);
-    } else if (sortBy === "rating") {
-      return products.slice().sort((a, b) => {
-        // Sort by rating count first, then by rating rate if counts are equal
-        if (a.rating.count !== b.rating.count) {
-          return b.rating.count - a.rating.count;
-        } else {
-          return b.rating.rate - a.rating.rate;
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  // Filter products based on selected category
+  const filteredProducts = selectedCategory
+    ? products.filter((product) => product.category === selectedCategory)
+    : products;
+
+  // Sort filtered products based on selected criteria
+  const sortedProducts = sortBy
+    ? filteredProducts.slice().sort((a, b) => {
+        if (sortBy === "name") {
+          return a.title.localeCompare(b.title);
+        } else if (sortBy === "price") {
+          return a.price - b.price;
+        } else if (sortBy === "rating") {
+          return (
+            b.rating.count - a.rating.count || b.rating.rate - a.rating.rate
+          );
         }
-      });
-    } else {
-      return products; // Return unsorted products if no sorting criteria selected
-    }
-  };
-
-  // Call sortProducts function to get sorted products
-  const sortedProducts = sortProducts(products);
+      })
+    : filteredProducts;
 
   return (
     <div>
-      {/* Sorting dropdown */}
       <div>
         <label htmlFor="sort">Sort by:</label>
         <select id="sort" value={sortBy} onChange={handleSortChange}>
@@ -46,7 +63,22 @@ const AllProducts = ({ products }) => {
         </select>
       </div>
 
-      {/* Render sorted products */}
+      <div>
+        <label htmlFor="category">Filter by Category:</label>
+        <select
+          id="category"
+          value={selectedCategory}
+          onChange={handleCategoryChange}
+        >
+          <option value="">All</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div>
         {sortedProducts.map((product) => (
           <ProductDetails key={product.id} product={product} />
