@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
 import ProductDetails from "./ProductDetails";
-import { getAllProducts, getAllCategories } from "../API";
+import {
+  getAllProducts,
+  getAllCategories,
+  getProductsByPriceRange,
+} from "../API";
+import MinAndMaxPrice from "./MinAndMaxPrice";
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sortBy, setSortBy] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +36,18 @@ const AllProducts = () => {
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
+  };
+
+  const handlePriceFilter = async (min, max) => {
+    setMinPrice(min);
+    setMaxPrice(max);
+    try {
+      const filteredProducts = await getProductsByPriceRange(min, max);
+
+      setProducts(filteredProducts);
+    } catch (error) {
+      console.error("Error filtering products by price range:", error);
+    }
   };
 
   // Filter products based on selected category
@@ -78,6 +97,8 @@ const AllProducts = () => {
           ))}
         </select>
       </div>
+
+      <MinAndMaxPrice onFilter={handlePriceFilter} />
 
       <div>
         {sortedProducts.map((product) => (

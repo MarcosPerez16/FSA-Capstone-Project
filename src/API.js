@@ -28,6 +28,8 @@ export const getAllProducts = async () => {
   try {
     const response = await fetch(`${APIURL}/products`);
     const result = await response.json();
+    console.log(result);
+
     return result;
   } catch (error) {
     console.error("Error getting all products", error);
@@ -54,5 +56,27 @@ export const getAllCategories = async () => {
     return result;
   } catch (error) {
     console.error("Error getting all categories", error);
+  }
+};
+
+//Min/Max Price function
+export const getProductsByPriceRange = async (minPrice, maxPrice) => {
+  try {
+    const response = await fetch(`${APIURL}/products`);
+    const products = await response.json();
+
+    // Filter based on min and max price
+    const filteredProducts = products.filter((product) => {
+      const productPrice = product.price;
+
+      return (
+        (!minPrice || productPrice >= minPrice) &&
+        (!maxPrice || productPrice <= maxPrice)
+      );
+    });
+
+    return filteredProducts;
+  } catch (error) {
+    console.error("Error getting products by price range", error);
   }
 };
