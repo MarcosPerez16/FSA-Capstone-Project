@@ -13,7 +13,13 @@ const Cart = ({ cart, products, setCart }) => {
       <p>Total Items:</p>
       {cart.map((item, index) => {
         const productItem = getAllItemDetails(item);
-        return <CartItemCard key={index} cartItem={productItem} />;
+        return (
+          <CartItemCard
+            key={index}
+            cartItem={productItem}
+            quantity={item.quantity}
+          />
+        );
       })}
     </div>
   );

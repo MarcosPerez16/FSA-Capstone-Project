@@ -1,13 +1,33 @@
 // imports here
 import "./card.css";
 import { useNavigate } from "react-router";
-const ProductDetails = ({ product, isSingle }) => {
+
+const ProductDetails = ({ product, isSingle, cart, setCart }) => {
   // logic here
 
   const navigate = useNavigate();
 
   const handleViewItemClick = () => {
     navigate(`/${product.id}`);
+  };
+
+  const handleAddToCart = () => {
+    const productId = product.id;
+    //if product exists in cart
+    const existingCartItem = cart.findIndex(
+      (item) => item.productId === productId
+    );
+    if (existingCartItem !== -1) {
+      //make copy of exsisting cart
+      const updatedCart = [...cart];
+      //update the quantity
+      updatedCart[existingCartItem].quantity += 1;
+      setCart(updatedCart);
+    } else {
+      //if new product is not in cart add with quantity
+      const newItem = { productId, quantity: 1 };
+      setCart((prevCart) => [...prevCart, newItem]);
+    }
   };
 
   //   Consider adding a back button for when a user clicks on View item it brings them to the singleproduct
@@ -22,7 +42,9 @@ const ProductDetails = ({ product, isSingle }) => {
         <p>
           Rating: {product.rating.rate} ({product.rating.count} reviews)
         </p>
-        <button className="card-button">Add to Cart</button>
+        <button className="card-button" onClick={handleAddToCart}>
+          Add to Cart
+        </button>
         {!isSingle && (
           <button onClick={handleViewItemClick} className="view-item-button">
             View Item

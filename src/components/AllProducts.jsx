@@ -7,7 +7,7 @@ import {
 } from "../API";
 import MinAndMaxPrice from "./MinAndMaxPrice";
 
-const AllProducts = () => {
+const AllProducts = ({ cart, setCart }) => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -102,7 +102,12 @@ const AllProducts = () => {
 
       <div>
         {sortedProducts.map((product) => (
-          <ProductDetails key={product.id} product={product} />
+          <ProductDetails
+            key={product.id}
+            product={product}
+            cart={cart}
+            setCart={setCart}
+          />
         ))}
       </div>
     </div>

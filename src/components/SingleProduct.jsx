@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import ProductDetails from "./ProductDetails";
 import { useNavigate } from "react-router-dom";
 
-const SingleProduct = () => {
+const SingleProduct = ({ cart, setCart }) => {
   // logic here
   const [product, setProduct] = useState(null);
   const { productId } = useParams();
@@ -30,7 +30,12 @@ const SingleProduct = () => {
 
   return (
     <div>
-      <ProductDetails product={product} isSingle />
+      <ProductDetails
+        product={product}
+        isSingle
+        cart={cart}
+        setCart={setCart}
+      />
       <button onClick={handleGoBackClick}>Go Back</button>
     </div>
   );

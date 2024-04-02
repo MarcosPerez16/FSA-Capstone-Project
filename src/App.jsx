@@ -42,7 +42,12 @@ const App = () => {
     <div>
       <NavBar token={token} setToken={setToken} />
       <Routes>
-        <Route path="/" element={<AllProducts products={products} />} />
+        <Route
+          path="/"
+          element={
+            <AllProducts products={products} cart={cart} setCart={setCart} />
+          }
+        />
         <Route
           path="/login"
           element={
@@ -60,7 +65,10 @@ const App = () => {
             />
           }
         />
-        <Route path="/:productId" element={<SingleProduct />} />
+        <Route
+          path="/:productId"
+          element={<SingleProduct cart={cart} setCart={setCart} />}
+        />
       </Routes>
     </div>
   );
