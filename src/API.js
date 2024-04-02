@@ -80,3 +80,26 @@ export const getProductsByPriceRange = async (minPrice, maxPrice) => {
     console.error("Error getting products by price range", error);
   }
 };
+
+//GET ALL USERS
+export const getAllUsers = async (username) => {
+  try {
+    const response = await fetch(`${APIURL}/users`);
+    const result = await response.json();
+    const userData = result.find((user) => user.username === username);
+    return userData;
+  } catch (error) {
+    console.error("Error getting all users", error);
+  }
+};
+
+//GET USER CART
+export const getUserCart = async (id) => {
+  try {
+    const response = await fetch(`${APIURL}/carts/${id}`);
+    const result = await response.json();
+    return result.products;
+  } catch (error) {
+    console.error("Error getting user cart", error);
+  }
+};

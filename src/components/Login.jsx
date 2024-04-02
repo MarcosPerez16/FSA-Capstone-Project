@@ -1,8 +1,8 @@
 // imports here
 import { useState } from "react";
-import { loginUser } from "../API";
+import { loginUser, getAllUsers, getUserCart } from "../API";
 import { useNavigate } from "react-router";
-const Login = ({ setToken }) => {
+const Login = ({ setToken, setUser, setCart }) => {
   // logic here
 
   const [username, setUsername] = useState("");
@@ -20,7 +20,11 @@ const Login = ({ setToken }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const token = await loginUser(username, password);
+    const user = await getAllUsers(username);
+    const usersCart = await getUserCart(user.id);
     setToken(token);
+    setUser(user);
+    setCart(usersCart);
     setPassword("");
     setUsername("");
     navigate("/");
