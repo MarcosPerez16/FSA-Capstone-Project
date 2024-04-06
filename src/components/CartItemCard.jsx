@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // imports here
-const CartItemCard = ({ cartItem, quantity, updateQuantity }) => {
+const CartItemCard = ({ cartItem, quantity, updateQuantity, onDelete }) => {
   // logic here
 
   const [itemQuantity, setItemQuantity] = useState(quantity);
@@ -16,6 +16,10 @@ const CartItemCard = ({ cartItem, quantity, updateQuantity }) => {
       setItemQuantity(itemQuantity - 1);
       updateQuantity(cartItem.id, itemQuantity - 1);
     }
+  };
+
+  const handleDelete = () => {
+    onDelete(cartItem.id);
   };
 
   //need to work on this also:
@@ -51,6 +55,7 @@ const CartItemCard = ({ cartItem, quantity, updateQuantity }) => {
       <div>
         <button onClick={handleIncrement}>+</button>
         <button onClick={handleDecrement}>-</button>
+        <button onClick={handleDelete}>Delete</button>
       </div>
     </div>
   );

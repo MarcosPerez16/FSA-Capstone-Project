@@ -15,6 +15,12 @@ const Cart = ({ cart, products, setCart }) => {
     );
   };
 
+  const handleDelete = (productId) => {
+    setCart((prevCart) =>
+      prevCart.filter((item) => item.productId !== productId)
+    );
+  };
+
   return (
     <div>
       <h1>Shopping Cart</h1>
@@ -27,6 +33,7 @@ const Cart = ({ cart, products, setCart }) => {
             cartItem={productItem}
             quantity={item.quantity}
             updateQuantity={updateQuantity}
+            onDelete={handleDelete}
           />
         );
       })}
