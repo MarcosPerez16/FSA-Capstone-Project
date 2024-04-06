@@ -7,6 +7,14 @@ const Cart = ({ cart, products, setCart }) => {
   const getAllItemDetails = (cartItem) =>
     products.find((product) => product.id === cartItem.productId);
 
+  const updateQuantity = (productId, newQuantity) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.productId === productId ? { ...item, quantity: newQuantity } : item
+      )
+    );
+  };
+
   return (
     <div>
       <h1>Shopping Cart</h1>
@@ -18,6 +26,7 @@ const Cart = ({ cart, products, setCart }) => {
             key={index}
             cartItem={productItem}
             quantity={item.quantity}
+            updateQuantity={updateQuantity}
           />
         );
       })}

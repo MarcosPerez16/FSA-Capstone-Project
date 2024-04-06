@@ -30,8 +30,6 @@ const ProductDetails = ({ product, isSingle, cart, setCart }) => {
     }
   };
 
-  //   Consider adding a back button for when a user clicks on View item it brings them to the singleproduct
-  //page but then there needs to be a button on that singleproducts page that brings them back to product details
   return (
     <div className="card">
       <img src={product.image} alt={product.title} className="card-image" />
