@@ -38,6 +38,10 @@ const App = () => {
     }
   }, [token]);
 
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   return (
     <div>
       <NavBar token={token} setToken={setToken} />
