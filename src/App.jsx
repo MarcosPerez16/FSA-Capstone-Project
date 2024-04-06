@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Login, NavBar, AllProducts, SingleProduct, Cart } from "./components";
+import {
+  Login,
+  NavBar,
+  AllProducts,
+  SingleProduct,
+  Cart,
+  CheckoutPage,
+  ConfirmationPage,
+} from "./components";
 import { getAllProducts } from "./API";
 
 //THERES NO NEED TO DO A ADD OR DELETE WITH THE API BECAUSE WE ARENT SUPPOSED TO BE
@@ -73,6 +81,7 @@ const App = () => {
           path="/:productId"
           element={<SingleProduct cart={cart} setCart={setCart} />}
         />
+        <Route path="/checkout" element={<CheckoutPage cart={cart} />} />
       </Routes>
     </div>
   );

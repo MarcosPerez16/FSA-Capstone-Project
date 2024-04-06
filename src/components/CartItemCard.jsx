@@ -47,7 +47,7 @@ const CartItemCard = ({ cartItem, quantity, updateQuantity, onDelete }) => {
       <div>
         <button onClick={handleIncrement}>+</button>
         <button onClick={handleDecrement}>-</button>
-        <button onClick={handleDelete}>Delete</button>
+        <button onClick={handleDelete}>Remove</button>
       </div>
     </div>
   );

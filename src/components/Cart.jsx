@@ -1,6 +1,7 @@
 // imports here
 import React from "react";
 import CartItemCard from "./CartItemCard";
+import CheckoutButton from "./CheckoutButton";
 
 const Cart = ({ cart, products, setCart }) => {
   // logic here
@@ -28,13 +29,15 @@ const Cart = ({ cart, products, setCart }) => {
       {cart.map((item, index) => {
         const productItem = getAllItemDetails(item);
         return (
-          <CartItemCard
-            key={index}
-            cartItem={productItem}
-            quantity={item.quantity}
-            updateQuantity={updateQuantity}
-            onDelete={handleDelete}
-          />
+          <div key={index}>
+            <CartItemCard
+              cartItem={productItem}
+              quantity={item.quantity}
+              updateQuantity={updateQuantity}
+              onDelete={handleDelete}
+            />
+            <CheckoutButton />
+          </div>
         );
       })}
     </div>
