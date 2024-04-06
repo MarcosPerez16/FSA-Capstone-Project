@@ -35,7 +35,7 @@ const ProductDetails = ({ product, isSingle, cart, setCart }) => {
       <img src={product.image} alt={product.title} className="card-image" />
       <div className="card-content">
         <h2 className="card-title">{product.title}</h2>
-        <p className="card-price">${product.price}</p>
+        <p className="card-price">${product.price.toFixed(2)}</p>
         <p>{product.category}</p>
         <p>
           Rating: {product.rating.rate} ({product.rating.count} reviews)
