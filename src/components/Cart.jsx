@@ -2,11 +2,15 @@
 import React from "react";
 import CartItemCard from "./CartItemCard";
 import CheckoutButton from "./CheckoutButton";
+import useNavigation from "../hooks/useNavigation";
 
 //could make a button in the cart where it lets us go back to the products page.
 
 const Cart = ({ cart, products, setCart }) => {
   // logic here
+
+  const { handleReturnToProducts } = useNavigation();
+
   const getAllItemDetails = (cartItem) =>
     products.find((product) => product.id === cartItem.productId);
 
@@ -42,6 +46,9 @@ const Cart = ({ cart, products, setCart }) => {
         );
       })}
       <CheckoutButton />
+      <div>
+        <button onClick={handleReturnToProducts}>Return To Products</button>
+      </div>
     </div>
   );
 };

@@ -7,6 +7,8 @@ import {
 } from "../API";
 import MinAndMaxPrice from "./MinAndMaxPrice";
 
+//could add a proceed to cart button for better UI
+
 const AllProducts = ({ cart, setCart }) => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
