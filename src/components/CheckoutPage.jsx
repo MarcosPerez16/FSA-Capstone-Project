@@ -1,13 +1,29 @@
 //   //remember we need to add some sort of dummy payment method in here we arent using a backend
 //   //when the user clicks on purchase in this page they should be directed to a confirmation page, we made a component for that already
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Payment from "./Payment";
+
 const CheckoutPage = ({ cart, products }) => {
   const navigate = useNavigate();
+  const [isPaymentSubmitted, setIsPaymentSubmitted] = useState(false);
 
   const handleReturnToCart = () => {
     navigate("/cart");
   };
+
+  const handlePaymentSubmit = (formData) => {
+    console.log("Payment submitted:", formData);
+
+    setIsPaymentSubmitted(true);
+  };
+
+  //Use useEffect to navigate to confirmation page after payment is submitted
+  useEffect(() => {
+    if (isPaymentSubmitted) {
+      navigate("/confirmation");
+    }
+  }, [isPaymentSubmitted, navigate]);
 
   return (
     <div>
@@ -24,9 +40,9 @@ const CheckoutPage = ({ cart, products }) => {
           return (
             <div key={index}>
               <img
+                className="card-image"
                 src={product.image}
                 alt={product.title}
-                className="card-image"
               />
               <p>{product.title}</p>
               <p>${product.price.toFixed(2)}</p>
@@ -47,7 +63,7 @@ const CheckoutPage = ({ cart, products }) => {
         <button onClick={handleReturnToCart}>Return To Cart</button>
       </div>
       <div>
-        <button>Purchase</button>
+        <Payment onSubmit={handlePaymentSubmit} />
       </div>
     </div>
   );

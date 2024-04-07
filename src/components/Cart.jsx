@@ -3,6 +3,8 @@ import React from "react";
 import CartItemCard from "./CartItemCard";
 import CheckoutButton from "./CheckoutButton";
 
+//could make a button in the cart where it lets us go back to the products page.
+
 const Cart = ({ cart, products, setCart }) => {
   // logic here
   const getAllItemDetails = (cartItem) =>

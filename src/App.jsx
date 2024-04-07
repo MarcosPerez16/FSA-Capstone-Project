@@ -87,6 +87,7 @@ const App = () => {
           path="/checkout"
           element={<CheckoutPage cart={cart} products={products} />}
         />
+        <Route path="/confirmation" element={<ConfirmationPage />} />
       </Routes>
     </div>
   );
