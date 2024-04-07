@@ -11,8 +11,10 @@ import {
 } from "./components";
 import { getAllProducts } from "./API";
 
-//THERES NO NEED TO DO A ADD OR DELETE WITH THE API BECAUSE WE ARENT SUPPOSED TO BE
-//USING THOSE FEATURES WITH THE FAKE STORE API
+//IF I HAVE TIME ADD SOME SORT OF ANIMATION OR SOMETHING TO SHOW WHEN
+//A USER HAS ADDED SOMETHING TO THE CART THEY WILL KNOW BECAUSE RIGHT NOW
+//IF YOU CLICK ADD TO CART AS A LOGGED IN USER THERE IS NO INDICATOR YOU HAVE TO MANUALLY
+//CHECK THE CART TO SEE IF ITS IN THERE
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token" || null));
@@ -81,7 +83,10 @@ const App = () => {
           path="/:productId"
           element={<SingleProduct cart={cart} setCart={setCart} />}
         />
-        <Route path="/checkout" element={<CheckoutPage cart={cart} />} />
+        <Route
+          path="/checkout"
+          element={<CheckoutPage cart={cart} products={products} />}
+        />
       </Routes>
     </div>
   );

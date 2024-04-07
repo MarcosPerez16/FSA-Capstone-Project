@@ -36,10 +36,10 @@ const Cart = ({ cart, products, setCart }) => {
               updateQuantity={updateQuantity}
               onDelete={handleDelete}
             />
-            <CheckoutButton />
           </div>
         );
       })}
+      <CheckoutButton />
     </div>
   );
 };
