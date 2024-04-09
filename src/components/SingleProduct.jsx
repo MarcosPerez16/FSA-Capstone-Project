@@ -28,8 +28,6 @@ const SingleProduct = ({ cart, setCart, token }) => {
     return <h1>Loading...</h1>;
   }
 
-  console.log(token);
-
   return (
     <div>
       <ProductDetails

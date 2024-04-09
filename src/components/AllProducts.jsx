@@ -7,10 +7,6 @@ import {
 } from "../API";
 import MinAndMaxPrice from "./MinAndMaxPrice";
 
-//After that we just need to style up the webpage we are pretty much done with MVP requirements
-//Except deploying the website to Netlify
-//
-
 const AllProducts = ({ cart, setCart, token }) => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -18,16 +14,20 @@ const AllProducts = ({ cart, setCart, token }) => {
   const [sortBy, setSortBy] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const productsData = await getAllProducts();
         setProducts(productsData);
         const categoriesData = await getAllCategories();
         setCategories(categoriesData);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -104,17 +104,21 @@ const AllProducts = ({ cart, setCart, token }) => {
 
       <MinAndMaxPrice onFilter={handlePriceFilter} />
 
-      <div>
-        {sortedProducts.map((product) => (
-          <ProductDetails
-            key={product.id}
-            product={product}
-            cart={cart}
-            setCart={setCart}
-            token={token}
-          />
-        ))}
-      </div>
+      {loading ? ( // Conditionally render loading indicator
+        <p>Loading...</p>
+      ) : (
+        <div>
+          {sortedProducts.map((product) => (
+            <ProductDetails
+              key={product.id}
+              product={product}
+              cart={cart}
+              setCart={setCart}
+              token={token}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
