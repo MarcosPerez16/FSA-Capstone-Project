@@ -26,7 +26,6 @@ const CartItemCard = ({ cartItem, quantity, updateQuantity, onDelete }) => {
     <div>
       <div>
         <img //can adjust when we style
-          style={{ width: "200px", height: "200px" }}
           src={cartItem?.image}
           alt={cartItem?.title}
         />

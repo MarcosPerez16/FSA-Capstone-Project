@@ -4,6 +4,7 @@ import { getSingleProduct } from "../API";
 import { useParams } from "react-router-dom";
 import ProductDetails from "./ProductDetails";
 import { useNavigate } from "react-router-dom";
+import "./SingleProduct.css";
 
 const SingleProduct = ({ cart, setCart, token }) => {
   // logic here
@@ -37,7 +38,9 @@ const SingleProduct = ({ cart, setCart, token }) => {
         setCart={setCart}
         token={token}
       />
-      <button onClick={handleGoBackClick}>Go Back</button>
+      <button onClick={handleGoBackClick} className="goBack-button">
+        Go Back
+      </button>
     </div>
   );
 };

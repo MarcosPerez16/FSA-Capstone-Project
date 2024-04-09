@@ -1,10 +1,9 @@
-// imports here
 import { useState } from "react";
 import { loginUser, getAllUsers, getUserCart } from "../API";
 import { useNavigate } from "react-router";
-const Login = ({ setToken, setUser, setCart }) => {
-  // logic here
+import "./Login.css";
 
+const Login = ({ setToken, setUser, setCart }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -31,10 +30,10 @@ const Login = ({ setToken, setUser, setCart }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="login-container">
+      <form onSubmit={handleSubmit} className="login-form">
         <h2>Login</h2>
-        <div>
+        <div className="form-group">
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -44,7 +43,7 @@ const Login = ({ setToken, setUser, setCart }) => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -54,7 +53,9 @@ const Login = ({ setToken, setUser, setCart }) => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">
+          Login
+        </button>
       </form>
     </div>
   );

@@ -1,0 +1,41 @@
+.navbar {
+  background-color: #46211a;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-title h1 {
+  color: #f1d3b2;
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: #f1d3b2;
+  text-decoration: none;
+  margin-right: 20px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #a43820;
+}
+
+.logout-button {
+  background-color: transparent;
+  border: none;
+  color: #f1d3b2;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: inherit;
+  transition: color 0.3s ease;
+}
+
+.logout-button:hover {
+  color: #a43820;
+}

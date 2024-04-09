@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./MinAndMaxPrice.css";
 
 const MinAndMaxPrice = ({ onFilter }) => {
   const [minPrice, setMinPrice] = useState("");
@@ -25,24 +26,27 @@ const MinAndMaxPrice = ({ onFilter }) => {
   };
 
   return (
-    <div>
-      <label htmlFor="minPrice">Min Price:</label>
-      <span>$</span>
-      <input
-        type="number"
-        id="minPrice"
-        value={minPrice}
-        onChange={handleMinPriceChange}
-      />
-
-      <label htmlFor="maxPrice">Max Price:</label>
-      <span>$</span>
-      <input
-        type="number"
-        id="maxPrice"
-        value={maxPrice}
-        onChange={handleMaxPriceChange}
-      />
+    <div className="price-filter-container">
+      <div>
+        <label htmlFor="minPrice">Min Price:</label>
+        <span>$</span>
+        <input
+          type="number"
+          id="minPrice"
+          value={minPrice}
+          onChange={handleMinPriceChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="maxPrice">Max Price:</label>
+        <span>$</span>
+        <input
+          type="number"
+          id="maxPrice"
+          value={maxPrice}
+          onChange={handleMaxPriceChange}
+        />
+      </div>
     </div>
   );
 };

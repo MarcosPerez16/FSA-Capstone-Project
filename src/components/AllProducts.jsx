@@ -6,6 +6,7 @@ import {
   getProductsByPriceRange,
 } from "../API";
 import MinAndMaxPrice from "./MinAndMaxPrice";
+import "./AllProducts.css";
 
 const AllProducts = ({ cart, setCart, token }) => {
   const [products, setProducts] = useState([]);
@@ -75,8 +76,8 @@ const AllProducts = ({ cart, setCart, token }) => {
     : filteredProducts;
 
   return (
-    <div>
-      <div>
+    <div className="all-products-container">
+      <div className="select-input">
         <label htmlFor="sort">Sort by:</label>
         <select id="sort" value={sortBy} onChange={handleSortChange}>
           <option value="">None</option>
@@ -85,8 +86,7 @@ const AllProducts = ({ cart, setCart, token }) => {
           <option value="rating">Rating</option>
         </select>
       </div>
-
-      <div>
+      <div className="select-input">
         <label htmlFor="category">Filter by Category:</label>
         <select
           id="category"
@@ -101,13 +101,11 @@ const AllProducts = ({ cart, setCart, token }) => {
           ))}
         </select>
       </div>
-
       <MinAndMaxPrice onFilter={handlePriceFilter} />
-
-      {loading ? ( // Conditionally render loading indicator
-        <p>Loading...</p>
+      {loading ? (
+        <p className="loading-indicator">Loading...</p>
       ) : (
-        <div>
+        <div className="product-grid-container">
           {sortedProducts.map((product) => (
             <ProductDetails
               key={product.id}
