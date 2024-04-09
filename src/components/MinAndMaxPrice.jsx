@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+//might need to fix an issue in here where it lets you input negative numbers when you used the down arrows
+
 const MinAndMaxPrice = ({ onFilter }) => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
