@@ -7,9 +7,11 @@ import {
 } from "../API";
 import MinAndMaxPrice from "./MinAndMaxPrice";
 
-//could add a proceed to cart button for better UI
+//After that we just need to style up the webpage we are pretty much done with MVP requirements
+//Except deploying the website to Netlify
+//
 
-const AllProducts = ({ cart, setCart }) => {
+const AllProducts = ({ cart, setCart, token }) => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -109,6 +111,7 @@ const AllProducts = ({ cart, setCart }) => {
             product={product}
             cart={cart}
             setCart={setCart}
+            token={token}
           />
         ))}
       </div>

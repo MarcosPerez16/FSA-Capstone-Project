@@ -22,12 +22,6 @@ const CartItemCard = ({ cartItem, quantity, updateQuantity, onDelete }) => {
     onDelete(cartItem.id);
   };
 
-  //start working on the checkout page and adding payment using dummy info and a confirmation page
-
-  //reference the FIGMA sketch we made because we are going to need to add a checkout page
-  // and other things like a total price in the shopping cart page
-  //add a button at the bottom of the shopping cart page that navigates to the checkoutpage or we can do it all within the shopping cart page still undecided
-
   return (
     <div>
       <div>

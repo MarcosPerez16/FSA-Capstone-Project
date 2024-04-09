@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import ProductDetails from "./ProductDetails";
 import { useNavigate } from "react-router-dom";
 
-const SingleProduct = ({ cart, setCart }) => {
+const SingleProduct = ({ cart, setCart, token }) => {
   // logic here
   const [product, setProduct] = useState(null);
   const { productId } = useParams();
@@ -28,6 +28,8 @@ const SingleProduct = ({ cart, setCart }) => {
     return <h1>Loading...</h1>;
   }
 
+  console.log(token);
+
   return (
     <div>
       <ProductDetails
@@ -35,6 +37,7 @@ const SingleProduct = ({ cart, setCart }) => {
         isSingle
         cart={cart}
         setCart={setCart}
+        token={token}
       />
       <button onClick={handleGoBackClick}>Go Back</button>
     </div>

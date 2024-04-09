@@ -1,5 +1,3 @@
-//   //remember we need to add some sort of dummy payment method in here we arent using a backend
-//   //when the user clicks on purchase in this page they should be directed to a confirmation page, we made a component for that already
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Payment from "./Payment";
