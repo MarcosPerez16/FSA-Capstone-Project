@@ -4,8 +4,6 @@ import CartItemCard from "./CartItemCard";
 import CheckoutButton from "./CheckoutButton";
 import useNavigation from "../hooks/useNavigation";
 
-//could make a button in the cart where it lets us go back to the products page.
-
 const Cart = ({ cart, products, setCart }) => {
   // logic here
 

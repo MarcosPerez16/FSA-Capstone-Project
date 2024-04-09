@@ -1,21 +1,27 @@
 import React, { useState } from "react";
 
-//might need to fix an issue in here where it lets you input negative numbers when you used the down arrows
-
 const MinAndMaxPrice = ({ onFilter }) => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
 
   const handleMinPriceChange = (event) => {
     const newMinPrice = event.target.value;
-    setMinPrice(newMinPrice);
-    onFilter(newMinPrice, maxPrice);
+    if (newMinPrice < 0) {
+      setMinPrice("");
+    } else {
+      setMinPrice(newMinPrice);
+      onFilter(newMinPrice, maxPrice);
+    }
   };
 
   const handleMaxPriceChange = (event) => {
     const newMaxPrice = event.target.value;
-    setMaxPrice(newMaxPrice);
-    onFilter(minPrice, newMaxPrice);
+    if (newMaxPrice < 0) {
+      setMaxPrice("");
+    } else {
+      setMaxPrice(newMaxPrice);
+      onFilter(minPrice, newMaxPrice);
+    }
   };
 
   return (
