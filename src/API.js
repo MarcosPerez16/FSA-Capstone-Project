@@ -28,7 +28,6 @@ export const getAllProducts = async () => {
   try {
     const response = await fetch(`${APIURL}/products`);
     const result = await response.json();
-    console.log(result);
 
     return result;
   } catch (error) {

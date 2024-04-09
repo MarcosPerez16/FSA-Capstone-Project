@@ -1,0 +1,26 @@
+.confirmation-page,
+h2 {
+  text-align: center;
+  padding: 20px;
+}
+
+.confirmation-header {
+  color: #46211a;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.continue-shopping-button {
+  background-color: #46211a;
+  color: #f1d3b2;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.continue-shopping-button:hover {
+  background-color: #a43820;
+}

@@ -1,5 +1,6 @@
 // imports here
 import { useState } from "react";
+import "./Payment.css";
 const Payment = ({ onSubmit }) => {
   // logic here
 
@@ -19,11 +20,12 @@ const Payment = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onSubmit(formData); //pass the form data to the parent component
+    onSubmit(formData); // pass the form data to the parent component
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="payment-form" onSubmit={handleSubmit}>
+      <h2>Payment</h2>
       <label htmlFor="firstName">First Name:</label>
       <input
         type="text"

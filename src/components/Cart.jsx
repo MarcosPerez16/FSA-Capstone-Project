@@ -1,12 +1,9 @@
-// imports here
 import React from "react";
 import CartItemCard from "./CartItemCard";
 import CheckoutButton from "./CheckoutButton";
 import useNavigation from "../hooks/useNavigation";
-
+import "./Cart.css";
 const Cart = ({ cart, products, setCart }) => {
-  // logic here
-
   const { handleReturnToProducts } = useNavigation();
 
   const getAllItemDetails = (cartItem) =>
@@ -27,9 +24,9 @@ const Cart = ({ cart, products, setCart }) => {
   };
 
   return (
-    <div>
-      <h1>Shopping Cart</h1>
-      <p>Total Items:</p>
+    <div className="cart-container">
+      <h1 className="cart-header">Shopping Cart</h1>
+      <p className="total-items">Total Items:</p>
       {cart.map((item, index) => {
         const productItem = getAllItemDetails(item);
         return (
@@ -44,13 +41,16 @@ const Cart = ({ cart, products, setCart }) => {
         );
       })}
       <CheckoutButton />
-      <div>
-        <button onClick={handleReturnToProducts}>Return To Products</button>
+      <div className="cart-actions">
+        <button
+          className="return-to-products-button"
+          onClick={handleReturnToProducts}
+        >
+          Return To Products
+        </button>
       </div>
     </div>
   );
 };
 
 export default Cart;
-
-Cart.jsx;

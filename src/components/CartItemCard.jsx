@@ -1,9 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import "./CartItemCard.css";
 
-// imports here
 const CartItemCard = ({ cartItem, quantity, updateQuantity, onDelete }) => {
-  // logic here
-
   const [itemQuantity, setItemQuantity] = useState(quantity);
 
   const handleIncrement = () => {
@@ -23,23 +21,22 @@ const CartItemCard = ({ cartItem, quantity, updateQuantity, onDelete }) => {
   };
 
   return (
-    <div>
+    <div className="cart-item">
       <div>
-        <img //can adjust when we style
-          src={cartItem?.image}
-          alt={cartItem?.title}
-        />
+        <img src={cartItem?.image} alt={cartItem?.title} />
       </div>
-      <div>
+      <div className="cart-item-details">
         <h3>{cartItem?.title}</h3>
         <p>{cartItem?.category}</p>
-        <p>Price: ${cartItem?.price}</p>
-        <p>{cartItem?.description}</p>
-        <p>Quantity: {quantity}</p>
+        <p>Description: {cartItem?.description}</p>
+        <p className="cart-item-price">Price: ${cartItem?.price.toFixed(2)}</p>
       </div>
-      <div>
-        <button onClick={handleIncrement}>+</button>
+      <div className="cart-item-quantity">
         <button onClick={handleDecrement}>-</button>
+        <span>{itemQuantity}</span>
+        <button onClick={handleIncrement}>+</button>
+      </div>
+      <div className="cart-item-remove">
         <button onClick={handleDelete}>Remove</button>
       </div>
     </div>

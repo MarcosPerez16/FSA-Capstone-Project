@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Payment from "./Payment";
+import "./CheckoutPage.css";
 
 const CheckoutPage = ({ cart, products }) => {
   const navigate = useNavigate();
@@ -12,11 +13,10 @@ const CheckoutPage = ({ cart, products }) => {
 
   const handlePaymentSubmit = (formData) => {
     console.log("Payment submitted:", formData);
-
     setIsPaymentSubmitted(true);
   };
 
-  //Use useEffect to navigate to confirmation page after payment is submitted
+  // Use useEffect to navigate to confirmation page after payment is submitted
   useEffect(() => {
     if (isPaymentSubmitted) {
       navigate("/confirmation");
@@ -24,7 +24,7 @@ const CheckoutPage = ({ cart, products }) => {
   }, [isPaymentSubmitted, navigate]);
 
   return (
-    <div>
+    <div className="checkout-page">
       <h2>Checkout Page</h2>
       <h3>Cart Items:</h3>
       {cart.map((item, index) => {
@@ -36,20 +36,22 @@ const CheckoutPage = ({ cart, products }) => {
         // Ensure the product is found before rendering
         if (product) {
           return (
-            <div key={index}>
+            <div key={index} className="cart-item">
               <img
-                className="card-image"
+                className="cart-item-image"
                 src={product.image}
                 alt={product.title}
               />
-              <p>{product.title}</p>
-              <p>${product.price.toFixed(2)}</p>
-              <p>{product.category}</p>
-              <p>
-                Rating: {product.rating.rate} ({product.rating.count} reviews)
-              </p>
-              <p>Quantity: {item.quantity}</p>
-              <p>{product.description}</p>
+              <div className="cart-item-details">
+                <p className="cart-item-title">{product.title}</p>
+                <p className="cart-item-price">${product.price.toFixed(2)}</p>
+                <p className="cart-item-category">{product.category}</p>
+                <p className="cart-item-rating">
+                  Rating: {product.rating.rate} ({product.rating.count} reviews)
+                </p>
+                <p className="cart-item-quantity">Quantity: {item.quantity}</p>
+                <p className="cart-item-description">{product.description}</p>
+              </div>
             </div>
           );
         } else {
@@ -58,9 +60,11 @@ const CheckoutPage = ({ cart, products }) => {
         }
       })}
       <div>
-        <button onClick={handleReturnToCart}>Return To Cart</button>
+        <button className="return-to-cart-button" onClick={handleReturnToCart}>
+          Return To Cart
+        </button>
       </div>
-      <div>
+      <div className="payment-wrapper">
         <Payment onSubmit={handlePaymentSubmit} />
       </div>
     </div>

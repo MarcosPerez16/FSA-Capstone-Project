@@ -1,15 +1,19 @@
 // imports here
 import { useNavigate } from "react-router";
+import "./CheckoutButton.css";
+
 const CheckoutButton = () => {
-  // logic here
   const navigate = useNavigate();
 
   const handleCheckout = () => {
     navigate("/checkout");
   };
+
   return (
     <div>
-      <button onClick={handleCheckout}>Checkout</button>
+      <button className="checkout-button" onClick={handleCheckout}>
+        Checkout
+      </button>
     </div>
   );
 };
