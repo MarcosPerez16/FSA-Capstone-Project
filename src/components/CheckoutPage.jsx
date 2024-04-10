@@ -1,27 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import Payment from "./Payment";
 import "./CheckoutPage.css";
 
 const CheckoutPage = ({ cart, products }) => {
   const navigate = useNavigate();
-  const [isPaymentSubmitted, setIsPaymentSubmitted] = useState(false);
+
+  const handleProceedToPayment = () => {
+    navigate("/payment");
+  };
 
   const handleReturnToCart = () => {
     navigate("/cart");
   };
-
-  const handlePaymentSubmit = (formData) => {
-    console.log("Payment submitted:", formData);
-    setIsPaymentSubmitted(true);
-  };
-
-  // Use useEffect to navigate to confirmation page after payment is submitted
-  useEffect(() => {
-    if (isPaymentSubmitted) {
-      navigate("/confirmation");
-    }
-  }, [isPaymentSubmitted, navigate]);
 
   return (
     <div className="checkout-page">
@@ -59,13 +49,16 @@ const CheckoutPage = ({ cart, products }) => {
           return <p key={index}>Product not found</p>;
         }
       })}
-      <div>
+      <div className="button-container">
         <button className="return-to-cart-button" onClick={handleReturnToCart}>
           Return To Cart
         </button>
-      </div>
-      <div className="payment-wrapper">
-        <Payment onSubmit={handlePaymentSubmit} />
+        <button
+          className="proceed-to-payment-button"
+          onClick={handleProceedToPayment}
+        >
+          Proceed To Payment
+        </button>
       </div>
     </div>
   );

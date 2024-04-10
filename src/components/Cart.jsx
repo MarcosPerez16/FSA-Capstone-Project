@@ -3,6 +3,7 @@ import CartItemCard from "./CartItemCard";
 import CheckoutButton from "./CheckoutButton";
 import useNavigation from "../hooks/useNavigation";
 import "./Cart.css";
+
 const Cart = ({ cart, products, setCart }) => {
   const { handleReturnToProducts } = useNavigation();
 
@@ -40,14 +41,14 @@ const Cart = ({ cart, products, setCart }) => {
           </div>
         );
       })}
-      <CheckoutButton />
-      <div className="cart-actions">
+      <div className="button-container">
         <button
           className="return-to-products-button"
           onClick={handleReturnToProducts}
         >
           Return To Products
         </button>
+        <CheckoutButton />
       </div>
     </div>
   );

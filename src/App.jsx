@@ -8,18 +8,28 @@ import {
   Cart,
   CheckoutPage,
   ConfirmationPage,
+  Payment,
 } from "./components";
 import { getAllProducts } from "./API";
+import { useNavigate } from "react-router-dom";
 
 const App = () => {
-  const [token, setToken] = useState(localStorage.getItem("token" || null));
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart" || []))
+    JSON.parse(localStorage.getItem("cart")) || []
   );
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user" || null))
+    JSON.parse(localStorage.getItem("user")) || null
   );
+  const navigate = useNavigate();
+
+  const handlePaymentSubmit = (formData) => {
+    console.log("Payment submitted:", formData);
+
+    //Navigate to confirmation page
+    navigate("/confirmation");
+  };
 
   useEffect(() => {
     const fetchAllProducts = async () => {
@@ -32,16 +42,14 @@ const App = () => {
   useEffect(() => {
     if (token) {
       localStorage.setItem("token", token);
-      const userObj = JSON.stringify(user);
-      localStorage.setItem("user", userObj);
-      const cartArr = JSON.stringify(cart);
-      localStorage.setItem("cart", cartArr);
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("cart", JSON.stringify(cart));
     } else {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       localStorage.removeItem("cart");
     }
-  }, [token]);
+  }, [token, user, cart]);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -88,6 +96,10 @@ const App = () => {
         <Route
           path="/checkout"
           element={<CheckoutPage cart={cart} products={products} />}
+        />
+        <Route
+          path="/payment"
+          element={<Payment onSubmit={handlePaymentSubmit} />}
         />
         <Route path="/confirmation" element={<ConfirmationPage />} />
       </Routes>
